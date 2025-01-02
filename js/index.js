@@ -34,28 +34,23 @@ addEventListener("click", greeting);
 //   }
 // };
 // applyCallbackToEachElement(result);
-const myFubc = (message) => {
-  message = "hi life";
-  console.log(message);
-};
-const high = (callback) => {
-  const dtr = "HOC dfjasdf s";
-  callback(dtr);
-};
-high(myFubc); //Функия высшего порядка(та которая принимает другую функцию)
-myFubc(high);
-
-const applyCallbackToEachElement = (arr, array) => {
-  arr = [1, 2, 3, 4, 5];
-  array = [6, 7, 8, 9, 10];
-  let square;
-};
-const result = (callback) => {
-  for (let i = 0; i < array.length; i++) {
-    square = array[i] * array[i];
-    console.log(square);
+//--4//
+const applyCallbackToEachElement = (arr, callback) => {
+  const res = [];
+  for (let i = 0; i < arr.length; i++) {
+    res.push(callback(arr[i]));
   }
-  callback(array);
+  return res;
 };
-applyCallbackToEachElement(result);
-result(applyCallbackToEachElement);
+const numbers = [10, 21, 32, 11];
+const square = applyCallbackToEachElement(numbers, (num) => num ** 2);
+console.log(square);
+// --5--
+const calculateDiscountedPrice = (price, discount, callback) => {
+  let showDicountedPrice = price - (price * discount) / 100;
+
+  callback(`Price with discount is: ${showDicountedPrice}`);
+};
+calculateDiscountedPrice(200, 15, function (num) {
+  console.log(`Price is: ${num}`);
+});
